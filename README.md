@@ -61,7 +61,7 @@ cd hello-ps-k8/manifests
 
 ### 2a. Apply All Resources at Once
 
-All the YAML files (ConfigMap, Deployments, Services) are located in the same directory, you can apply them in a single step. From the `manifests/` directory, run:
+All the YAML files (e.g., ConfigMaps, Deployments, Services) are located in the same directory. You can apply them in a single step. Navigate to the manifests/ directory and run the following command:
 
 ```bash
 kubectl apply -f .
@@ -69,7 +69,7 @@ kubectl apply -f .
 
 ### 2b. Alternatively Apply Individually
 
-If you prefer to run each deployment manually from the `manifests/` directory, you can run these commands:
+If you prefer to apply each deployment manually from the manifests/ directory, run the following commands:
 
 **ConfigMaps**
 ```bash
@@ -99,10 +99,11 @@ After applying all the resources, you can verify that the pods and services are 
    ```bash
    kubectl get all
    ```
+Look for the STATUS column. It should display Running for all 4 pods.
 
 **Getting your First Hello World:**
 
 Open your favorite browser and navigate to the client.
 ```bash
-http://localhost:30001
+http://localhost:30000
 ```
