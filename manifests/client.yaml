@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-client
+  template:
+    metadata:
+      labels:
+        app: hello-client
+    spec:
+      containers:
+        - name: hello-client
+          image: brettenet/hello-k8-client:latest
+          # image: hello-k8-client:latest
+          # imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SERVER_URL
+              value: http://hello-server-service:5001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-client-service
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30000
+  selector:
+    app: hello-client
